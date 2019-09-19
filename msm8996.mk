@@ -361,6 +361,10 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/xiaomi
 
+# Shims
+PRODUCT_PACKAGES += \
+    libcamshim
+
 # Telephony
 PRODUCT_PACKAGES += \
     ims-ext-common_system \
