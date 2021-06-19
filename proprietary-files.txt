@@ -203,6 +203,9 @@ vendor/lib/libmmcamera_isp_sub_module.so
 # Charger
 vendor/bin/hvdcp_opti
 
+# Camera vndk hax - from Lineage 16.0 build
+vendor/lib/libfui.so
+
 # CNE - from daisy - QKQ1.191002.002
 product/lib64/com.quicinc.cne.api@1.0.so|06764410022518f75a8e7fa1de35b7577cdbe8f9
 product/lib64/com.quicinc.cne.api@1.1.so|8940ad6defe4ffba387a259a698c2def51f1d5fa
