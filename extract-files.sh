@@ -54,6 +54,10 @@ function blob_fixup() {
     vendor/lib/hw/vulkan.msm8996.so)
         sed -i "s/vulkan.msm8953.so/vulkan.msm8996.so/g" "${2}"
         ;;
+        	# Remove libmedia.so dependency from lib-dplmedia.so
+    vendor/lib64/lib-dplmedia.so)
+        patchelf --remove-needed libmedia.so "${2}"
+        ;;
     esac
 }
 
