@@ -137,8 +137,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-service \
     camera.msm8996 \
     libmm-qcamera \
-    libfui \
-    libstdc++.vendor
+    libfui 
 
 # CNE
 PRODUCT_PACKAGES += \
