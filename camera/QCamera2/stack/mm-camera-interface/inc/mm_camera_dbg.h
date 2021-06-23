@@ -31,7 +31,7 @@
 #define __MM_CAMERA_DBG_H__
 
 // System dependencies
-#include <log/Log.h>
+#include <utils/Log.h>
 
 #ifdef QCAMERA_REDEFINE_LOG
 

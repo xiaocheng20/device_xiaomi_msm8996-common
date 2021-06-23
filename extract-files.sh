@@ -54,40 +54,34 @@ function blob_fixup() {
     vendor/lib/hw/vulkan.msm8996.so)
         sed -i "s/vulkan.msm8953.so/vulkan.msm8996.so/g" "${2}"
         ;;
-        	# Remove libmedia.so dependency from lib-dplmedia.so
-    vendor/lib64/lib-dplmedia.so)
-        patchelf --remove-needed libmedia.so "${2}"
-        ;;
-            # Camera hax
+    # Patch blobs for VNDK
     vendor/lib/libmmcamera2_stats_modules.so)
         sed -i "s|libgui.so|libfui.so|g" "${2}"
         sed -i "s|/data/misc/camera|/data/vendor/qcam|g" "${2}"
         sed -i "s|libandroid.so|libcamshim.so|g" "${2}"
         ;;
 
-    vendor/lib/libmpbase.so)
-        patchelf --remove-needed libandroid.so "${2}"
-        ;;
-
-   vendor/lib/libmm-qcamera.so | vendor/lib/libmmcamera2_cpp_module.so | vendor/lib/libmmcamera2_iface_modules.so | vendor/lib/libmmcamera2_imglib_modules.so | vendor/lib/libmmcamera2_mct.so | vendor/lib/libmmcamera2_pproc_modules.so | vendor/lib/libmmcamera2_stats_algorithm.so | vendor/lib/libmmcamera_dbg.so | vendor/lib/libmmcamera_hvx_grid_sum.so | vendor/lib/libmmcamera_hvx_zzHDR.so | vendor/lib/libmmcamera_imglib.so | vendor/lib/libmmcamera_isp_mesh_rolloff44.so | vendor/lib/libmmcamera_pdaf.so | vendor/lib/libmmcamera_pdafcamif.so | vendor/lib/libmmcamera_tintless_algo.so | vendor/lib/libmmcamera_tintless_bg_pca_algo.so | vendor/lib/libmmcamera_tuning.so)
-        sed -i "s|/data/misc/camera|/data/vendor/qcam|g" "${2}"
-        ;;
-
-    vendor/lib/libmmcamera2_sensor_modules.so)
-        sed -i "s|/system/etc/camera|/vendor/etc/camera|g" "${2}"
-        sed -i "s|/data/misc/camera|/data/vendor/qcam|g" "${2}"
-        ;;
-
-    vendor/bin/mm-qcamera-daemon)
-        sed -i "s|/data/vendor/camera/cam_socket%d|/data/vendor/qcam/camer_socket%d|g" "${2}"
-        ;;
-           # Patch blobs for VNDK
-    vendor/lib/libmmcamera_ppeiscore.so)
+    # Patch blobs for VNDK
+    vendor/lib/libmmcamera_ppeiscore.so | vendor/lib/libcamera_letv_algo.so)
         sed -i "s|libgui.so|libfui.so|g" "${2}"
         ;;
-    vendor/lib/libmpbase.so)
-        patchelf --remove-needed libandroid.so "${2}"
+
+    # Patch blobs for VNDK
+    vendor/lib/libarcsoft_hdr_detection.so | vendor/lib/libmpbase.so | vendor/lib/libarcsoft_panorama_burstcapture.so | vendor/lib/libarcsoft_smart_denoise.so | vendor/lib/libarcsoft_nighthawk.so | vendor/lib/libarcsoft_hdr.so | vendor/lib/libarcsoft_night_shot.so)
+        patchelf --remove-needed "libandroid.so" "${2}"
         ;;
+
+    # Patch blobs for VNDK
+    vendor/lib/libletv_algo_jni.so)
+        sed -i "s|libgui.so|libfui.so|g" "${2}"
+        patchelf --remove-needed "libandroid_runtime.so" "${2}"
+        ;;
+
+    # Patch blobs for VNDK
+    vendor/lib64/lib-dplmedia.so)
+        patchelf --remove-needed "libmedia.so" "${2}"
+        ;;
+
        
     esac
 }
