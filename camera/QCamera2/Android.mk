@@ -141,5 +141,6 @@ LOCAL_MODULE := camera_common_headers
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/stack/common
 include $(BUILD_HEADER_LIBRARY)
 
+include $(LOCAL_PATH)/libgui_shim.mk
 include $(call first-makefiles-under,$(LOCAL_PATH))
 endif
