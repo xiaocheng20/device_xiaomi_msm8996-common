@@ -175,6 +175,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.usb.controller=6a00000.dwc3
 
+# HWUI
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hwui.render_ahead=1
+
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
