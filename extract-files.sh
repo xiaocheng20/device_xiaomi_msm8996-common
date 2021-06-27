@@ -96,6 +96,11 @@ function blob_fixup() {
     vendor/lib64/lib-dplmedia.so)
         patchelf --remove-needed "libmedia.so" "${2}"
         ;;
+    # Patch blobs for VNDK  
+        vendor/lib/libmmcamera2_sensor_modules.so)
+        sed -i "s|/system/etc/camera|/vendor/etc/camera|g" "${2}"
+        sed -i "s|/data/misc/camera|/data/vendor/qcam|g" "${2}"
+        ;;
     esac
 }
 
